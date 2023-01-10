@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="utf-8">
+    {{template "general/header"}}
+</head>
+<body>
+    <div class="flex flex-col w-screen h-screen overflow-auto text-gray-700 bg-gradient-to-tr from-blue-200 via-indigo-200 to-pink-200">
+        <div class="flex items-center flex-shrink-0 w-full h-16 px-10 bg-white bg-opacity-75">
+            <svg class="w-8 h-8 text-indigo-600 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+            </svg>
+            <div class="flex items-center justify-center w-8 h-8 ml-auto">
+                <a href="/logout">
+                    <buton class="flex items-center justify-center w-8 h-8 ml-auto cursor-pointer font-bold">
+                        Logout
+                    </buton>
+                </a>
+            </div>
+        </div>
+
+        <header class="flex flex-nowrap px-10 mt-6 mb-3">
+            <form method="POST" action="/dashboard">
+                <button>
+                    <h1 class="text-2xl font-bold">Kanban App</h1>
+                </button>
+            </form>
+
+            
+            <form method="GET" action="/category/add" class="flex items-center justify-center h-4 ml-auto mr-3 cursor-pointer font-bold">
+                <button class="w-auto px-8 py-2 mt-2 bg-gradient-to-r from-green-600 to-blue-600 hover:from-pink-500 hover:to-yellow-500 text-white rounded shadow font-bold font-medium text-white-500 text-center" type="submit">Add Category</button>   
+            </form>
+        </header>
+
+            <!-- {{range .categories}}
+                {{.Type}}
+                {{range .Tasks}}
+                    {{.Title}}
+                    {{.Description}}
+                {{end}}
+            {{end}} -->
+            
+            <div class="flex flex-grow px-10 mt-4 space-x-6 overflow-auto">
+                {{range .categories}}
+                <div class="flex flex-col flex-shrink-0 w-72">
+                    <div class="flex justify-between items-center flex-shrink-0 h-10 px-2">
+                        <span class="block text-sm font-semibold">{{.Type}}</span>
+                    
+                        <div class="flex flex-between">
+                            <a href="/task/add?category={{.ID}}" class="flex items-center justify-center w-6 h-6 ml-auto text-indigo-500 rounded hover:bg-blue-500 hover:text-indigo-100">
+                                <button>
+                                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                                    </svg>
+                                </button>
+                            </a>
+
+                            <a href="/category/delete?category_id={{.ID}}" class="flex items-center justify-center w-6 h-6 ml-auto text-red-300 rounded hover:bg-red-500 hover:text-indigo-100">
+                                <button>
+                                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill="currentColor" d="M6.2253 4.81108C5.83477 4.42056 5.20161 4.42056 4.81108 4.81108C4.42056 5.20161 4.42056 5.83477 4.81108 6.2253L10.5858 12L4.81114 17.7747C4.42062 18.1652 4.42062 18.7984 4.81114 19.1889C5.20167 19.5794 5.83483 19.5794 6.22535 19.1889L12 13.4142L17.7747 19.1889C18.1652 19.5794 18.7984 19.5794 19.1889 19.1889C19.5794 18.7984 19.5794 18.1652 19.1889 17.7747L13.4142 12L19.189 6.2253C19.5795 5.83477 19.5795 5.20161 19.189 4.81108C18.7985 4.42056 18.1653 4.42056 17.7748 4.81108L12 10.5858L6.2253 4.81108Z"></path>
+                                    </svg>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+
+                    {{range .Tasks}}
+                    <div class="flex flex-col pb-2 overflow-auto">
+                        <div class="relative flex justify-between flex-col p-4 mt-3 bg-white rounded-lg cursor-pointer bg-opacity-90 group hover:bg-opacity-100">
+                            <a href="/task/update?task_id={{.ID}}">
+                                <form method="POST" action="/task/delete?task_id={{.ID}}">
+                                    <button class="absolute top-0 right-0 flex items-center justify-center hidden w-5 h-5 mt-3 mr-2 text-gray-500 rounded hover:bg-gray-200 hover:text-gray-700 group-hover:flex">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"></path>
+                                  
+                                            <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"></path>
+                                        </svg>
+                                    </button>
+                                </form>
+
+                                <div class="text-s border-b-2 border-indigo-500 py-2">
+                                    <h2 class="text-lg font-medium">Title: {{.Title}}</h2>
+                                </div>
+                                <h4 class="mt-2 text-sm font-medium"><li>{{.Description}}.</li></h4>
+                            
+                                <div class="flex justify-between items-center w-full mt-3 text-xs font-medium text-gray-400">
+                                    <div class="flex items-center my-2">
+                                        <svg class="w-4 h-4 text-gray-300 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
+                                        </svg>
+
+                                        <span class="ml-1 leading-none">
+                                            Create: {{.CreatedAt}}
+                                        </span>
+                                    </div>
+
+                                    <div class="flex items-center">
+                                        <svg class="w-4 h-4 text-gray-300 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
+                                        </svg>
+
+                                        <span class="ml-1 leading-none">
+                                            Update: {{.UpdatedAt}}
+                                        </span>
+                                    </div>
+                              
+                                    <div class="flex gap-2 h-5">
+                                        <a href="/task/update/process?task_id={{.ID}}&category_id={{categoryDec .CategoryID}}">
+                                            <button class="flex items-center justify-center hidden w-5 h-5 text-gray-500 rounded hover:bg-gray-200 hover:text-gray-700 group-hover:flex">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                                                    
+                                                    <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"></path>
+                                                </svg>
+                                            </button>
+                                        </a>
+                                
+                                        <a href="/task/update/process?task_id={{.ID}}&category_id={{categoryInc .CategoryID}}">
+                                            <button class="flex items-center justify-center hidden w-5 h-5 text-gray-500 rounded hover:bg-gray-200 hover:text-gray-700 group-hover:flex">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                                    <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"></path>
+                                                </svg>
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    {{end}}
+                </div>
+                {{end}}
+            </div>
+        <!-- TODO: answer here -->
+    </div>
+</body>
+</html>

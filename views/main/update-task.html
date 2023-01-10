@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="utf-8">
+    {{template "general/header"}}
+</head>
+<body class="bg-gradient-to-tr from-blue-200 via-indigo-200 to-pink-200 font-sans text-gray-900">
+    <div class="container mx-auto p-8 flex">
+        <div class="max-w-md w-full mx-auto">
+            
+            <div class="bg-white rounded-lg overflow-hidden shadow-2xl">
+                <div class="pt-8 pl-8">
+                    <a href="/dashboard">
+                        <button>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+                              </svg>
+                        </button>
+                    </a>
+                </div>
+
+                <h3 class="text-4xl text-center my-4 font-thin font-bold">Add new category</h3>
+  
+                <div class="p-8">
+                    <form method="POST" action="/task/update/process?task_id={{.ID}}">
+                        <div class="mb-5">
+                            <div class="mb-5">
+                                <label for="title" class="block mb-2 text-sm font-medium text-gray-600">Title</label>
+    
+                                <input type="text" placeholder="Type title here" name="title" class="block w-full p-3 rounded bg-gray-200 border border-transparent focus:outline-none"
+                                required />
+                            </div>
+
+                            <div class="mb-5">
+                                <label for="description" class="block mb-2 text-sm font-medium text-gray-600">Description</label>
+    
+                                <input type="text" placeholder="Type description here" name="description" class="block w-full p-3 rounded bg-gray-200 border border-transparent focus:outline-none"
+                                required />
+                            </div>
+
+                        <button class="w-full p-3 mt-4 bg-gradient-to-r from-green-600 to-blue-600 hover:from-pink-500 hover:to-yellow-500 text-white rounded shadow font-bold" type="submit">Update Task</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- TODO: answer here -->
+</body>
+</html>

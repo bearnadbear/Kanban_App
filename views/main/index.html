@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="utf-8">
+    {{template "general/header"}}
+</head>
+<body class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 font-sans text-gray-900">
+    <div class="flex items-center min-h-screen p-4 bg-gray-100 lg:justify-center">
+        <div class="flex flex-col overflow-hidden bg-white rounded-md shadow-lg max md:flex-row md:flex-1 lg:max-w-screen-md">
+            <div class="p-4 py-4 text-white bg-blue-500 md:w-80 md:flex-shrink-0 md:flex md:flex-col md:items-center md:justify-evenly">
+                <div class="my-3 text-4xl font-bold tracking-wider text-center">
+                    <h1 class="text-4xl text-center mt-10 mb-20 font-thin font-bold">Welcome to kanban app</h1>
+                </div>
+    
+                <p class="mt-6 font-normal text-center text-gray-300 md:mt-0">
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Est, praesentium?
+                </p>
+              
+                <p class="flex flex-col items-center justify-center mt-10 text-center">
+                    <span>Don't have an account?</span>
+                    <a href="#" class="underline">Get Started!</a>
+                </p>
+    
+                <p class="mt-6 text-sm text-center text-gray-300">Read our
+                    <a href="#" class="underline">terms</a> and <a href="#" class="underline">conditions</a>
+                </p>
+            </div>
+    
+            <div class="p-5 bg-white md:flex-1">
+                <h1 class="my-4 text-2xl font-semibold text-gray-700 text-center">Faris Firdaus Ariputra</h1>
+    
+                <div class="flex flex-col space-y-5">
+                    <span class="flex items-center justify-center space-x-2">
+                        <span class="h-px bg-gray-400 w-14"></span>
+                        <span class="font-normal text-gray-500">Welcome</span>
+                        <span class="h-px bg-gray-400 w-14"></span>
+                    </span>
+
+                    <div>
+                        <img src="https://i.pinimg.com/originals/90/bc/9f/90bc9fd1f9347f885af67ee62d98fb78.jpg" alt="">
+                    </div>
+
+                    <div class="flex items-center space-x-2">
+                        <input type="checkbox" id="remember" class="w-4 h-4 transition duration-300 rounded focus:ring-2 focus:ring-offset-0 focus:outline-none focus:ring-blue-200"/>
+                        
+                        <label for="remember" class="text-sm font-semibold text-gray-500">Jangan di ceklis</label>
+                    </div>
+                        
+                    <div class="flex flex-col space-y-4">
+                        <form method="POST" class="" action="/login">
+                            <button type="submit" class="w-full px-4 py-2 text-lg font-semibold text-white transition-colors duration-300 bg-blue-500 rounded-md shadow hover:bg-blue-600 focus:outline-none focus:ring-blue-200 focus:ring-4">Login</button>
+                        </form>
+                    </div>
+    
+                    <div class="flex flex-col space-y-4">
+                        <form method="POST" class="" action="/register">
+                            <button class="w-full px-4 py-2 text-lg font-semibold text-white transition-colors duration-300 bg-blue-500 rounded-md shadow hover:bg-blue-600 focus:outline-none focus:ring-blue-200 focus:ring-4">Register</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- TODO: answer here -->
+</body>
+</html>
